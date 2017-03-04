@@ -1,0 +1,38 @@
+<div class="row row-offcanvas row-offcanvas-left">
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+    	 <?php echo $this->adminMenu("admin-index");?>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+    	<div class="panel panel-default">
+    		<div class="panel-heading">
+    			<i class="fa fa-picture-o" aria-hidden="true"></i>
+    			<?php echo $this->translate("Delete Home Page Banner"); ?>
+    		</div>
+    		<div class="panel-body">
+    			<div class="alert alert-info">
+					<p><i class="fa fa-warning fa-fw"></i> 
+						<?php echo $this->translate('Are you sure you want to delete the following banner?'); ?>
+					</p>
+				</div>
+				<div class="thumbnail">
+					<img src="<?php echo $entity->getHomePageBannerImage(); ?>"  class="img-responsive" alt="<?php echo $entity->getHomePageBannerTitle(); ?>">
+					<div class="caption">
+						<p><b><?php echo $this->translate('Title'); ?>:</b> <?php echo $entity->getHomePageBannerTitle(); ?></p>
+						<p><b><?php echo $this->translate('Link'); ?>:</b> 
+                			<a href="<?php echo $entity->getHomePageBannerUrl(); ?>" target="new" title="<?php echo $entity->getHomePageBannerUrl(); ?>">
+               					<?php echo $this->translate('Link'); ?>
+               				</a>
+               			</p>
+               			<p><b><?php echo $this->translate('Order'); ?>:</b> <?php echo $entity->getHomePageBannerOrder(); ?></p>
+               			<p><b><?php echo $this->translate('Active'); ?>:</b> <?php echo ($entity->getHomePageBannerStatus() == 1 ? $this->translate("Yes") : $this->translate("No")); ?></p>					
+					</div>
+				</div>
+				
+    			<form method="post">
+                     <input type="submit" name="delete_confirmation" class="btn btn-danger" value="yes">
+                     <input type="submit" name="delete_confirmation" class="btn btn-primary" value="no">
+                </form
+    		</div>
+    	</div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="row row-offcanvas row-offcanvas-left">
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+    	 <?php echo $this->adminMenu("admin-index");?>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+    	<div class="panel panel-default">
+    		<div class="panel-heading">
+    			<i class="fa fa-picture-o" aria-hidden="true"></i>
+    			<?php echo $this->translate("Home Page Banners"); ?>
+    			<span class="pull-right">
+    				<?php echo $this->createButton("home-banner-admin-create"); ?>
+    			</span>
+    		</div>
+    		
+    		<?php if($this->paginator->count() == 0): ?>
+        	<div class="alert alert-info">
+        		<p><i class="fa fa-info-circle"></i> <?php echo $this->translate('No banners'); ?>
+        	</div>
+        	<?php else: ?>
+        	<div class="table-responsive">
+				<table class="table table-hover table-striped table-condensed">
+					<thead>
+						<tr>
+							<th><?php echo $this->translate("Image"); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php foreach($this->paginator as $entity): ?>
+						<tr>
+							<td>
+								<div class="thumbnail">
+									<img src="<?php echo $entity->getHomePageBannerImage(); ?>"  class="img-responsive" alt="<?php echo $entity->getHomePageBannerTitle(); ?>">
+									<div class="caption">
+										<p><b><?php echo $this->translate('Title'); ?>:</b> <?php echo $entity->getHomePageBannerTitle(); ?></p>
+										<p><b><?php echo $this->translate('Link'); ?>:</b> 
+                							<a href="<?php echo $entity->getHomePageBannerUrl(); ?>" target="new" title="<?php echo $entity->getHomePageBannerUrl(); ?>">
+                								<?php echo $this->translate('Link'); ?>
+                							</a>
+                						</p>
+                						<p><b><?php echo $this->translate('Order'); ?>:</b> <?php echo $entity->getHomePageBannerOrder(); ?></p>
+                						<p><b><?php echo $this->translate('Active'); ?>:</b> <?php echo ($entity->getHomePageBannerStatus() == 1 ? $this->translate("Yes") : $this->translate("No")); ?></p>
+										<p>
+											<span class="pull-right">
+												<?php echo $this->deleteButton("home-banner-admin-delete", array("id" => $entity->getHomePageBannerId())); ?>
+												<?php echo $this->updateButton("home-banner-admin-update", array("id" => $entity->getHomePageBannerId()));?>
+											</span>
+										</p>
+										<br />
+									</div>
+								</div>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-center small">
+					<?php echo $this->Paginator(
+    					$this->itemCountPerPage, 
+    					$this->itemCount, 
+    					$this->pageCount, 
+                           $this->page, 
+                           $this->routeParams,
+                           $this->queryParams);
+                       ?>
+				</div>
+			</div>
+    		<?php endif; ?>
+    	</div>
+   	</div>
+</div>

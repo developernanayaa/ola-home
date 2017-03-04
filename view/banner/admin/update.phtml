@@ -1,0 +1,103 @@
+<script>
+$( document ).ready(function() {
+
+    $('#home-page-banner-form').formValidation({
+        framework: 'bootstrap',
+        icon: {},
+        fields: {
+        	homePageBannerTitle: {
+				message: 'The Title is not valid',
+				validators: {
+					notEmpty: {
+						message: 'Title is required and can\'t be empty'
+					}
+				}
+			},
+
+			homePageBannerUrl: {
+				message: 'The Url is not valid',
+				validators: {
+					notEmpty: {
+						message: 'The Url is required and can\'t be empty'
+					}
+				}
+			},
+
+			homePageBannerImage: {
+				message: 'The Image is not valid',
+				validators: {
+					notEmpty: {
+						message: 'The Image is required and can\'t be empty'
+					}
+				}
+			},
+
+			homePageBannerOrder: {
+				message: 'The Order is not valid',
+				validators: {
+					notEmpty: {
+						message: 'The Order is required and can\'t be empty'
+					}
+				}
+			},
+        }
+    });
+
+});
+</script>
+<div class="row row-offcanvas row-offcanvas-left">
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+    	 <?php echo $this->adminMenu("admin-index");?>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+    	<div class="panel panel-default">
+    		<div class="panel-heading">
+    			<i class="fa fa-picture-o" aria-hidden="true"></i>
+    			<?php echo $this->translate("Edit Home Page Banners"); ?>
+    		</div>
+    		<div class="panel-body">
+    			<?php $this->form->prepare();?>
+        		<?php echo $this->form()->openTag($this->form); ?>
+        		<?php echo $this->formError($this->form->getMessages()); ?>
+        		
+        		<div class="row">
+        			<div class="col-xs-12">
+        				<?php echo $this->formDecorator($this->form->get('homePageBannerTitle')); ?>
+        			</div>
+        		</div>
+        		
+        		<div class="row">
+        			<div class="col-xs-12">
+        				<?php echo $this->formDecorator($this->form->get('homePageBannerUrl')); ?>
+        			</div>
+        		</div>
+        		
+        		<div class="row">
+        			<div class="col-xs-12">
+        				<?php echo $this->formDecorator($this->form->get('homePageBannerImage')); ?>
+        			</div>
+        		</div>
+        		
+        		<div class="row">
+        			<div class="col-xs-3">
+        				<?php echo $this->formDecorator($this->form->get('homePageBannerStatus')); ?>
+        			</div>
+        		</div>
+        		
+        		<div class="row">
+        			<div class="col-xs-2">
+        				<?php echo $this->formDecorator($this->form->get('homePageBannerOrder')); ?>
+        			</div>
+        		</div>
+        		
+        		<div class="row">
+        			<div class="col-xs-12">
+        				<?php echo $this->formDecorator($this->form->get('homePageBannerId')); ?>
+        			</div>
+        		</div>
+        		<?php echo $this->formDecorator($this->form->get('submitForm')); ?>
+        		<?php echo $this->form()->closeTag(); ?>
+    		</div>
+    	</div>
+    </div>
+</div>

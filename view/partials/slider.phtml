@@ -1,0 +1,17 @@
+<!-- slider -->
+<div class="slider-area">
+	<div class="bend niceties preview-1">
+		<div id="ensign-nivoslider" class="slides">	
+			<?php foreach($this->entitys as $entity): ?>
+				<img src="<?php echo $entity->getHomePageBannerImage(); ?>" alt="Malias" title="#slider-direction-1"/>     
+			<?php endforeach; ?>
+		</div>
+        <!-- direction 1 -->
+		<div id="slider-direction-1" class="t-lfr slider-direction"></div>
+	    <!-- direction 2 -->
+		<div id="slider-direction-2" class="slider-direction"></div>
+	   <!-- direction 3 -->
+		<div id="slider-direction-3" class="slider-direction"></div>
+	</div>
+</div>
+<!-- slider end-->
