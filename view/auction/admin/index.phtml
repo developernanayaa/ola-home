@@ -31,7 +31,7 @@
 					<tbody>
 					<?php foreach($this->paginator as $entity): ?>
 						<tr>
-							<td></td>
+							<td><img src="<?php echo $entity->getAuctionEntity()->getPictureEntity()->getPictureUrl(); ?>" class="img-responsive img-rounded" /></td>
 							<td><a href="" title="<?php echo $this->translate("View Auction"); ?>"><?php echo $entity->getAuctionEntity()->getAuctionHeading(); ?></a></td>
 							<td></td>
 							<td nowrap><?php echo $this->currencyFormat($entity->getAuctionEntity()->getAuctionCurrentBidValue(), "USD", "en_US"); ?></td>
@@ -51,10 +51,10 @@
     					$this->itemCountPerPage, 
     					$this->itemCount, 
     					$this->pageCount, 
-                           $this->page, 
-                           $this->routeParams,
-                           $this->queryParams);
-                       ?>
+                        $this->page, 
+                        $this->routeParams,
+                        $this->queryParams);
+                    ?>
 				</div>
 			</div>
         </div>
