@@ -8,6 +8,9 @@ return array(
     ),
     'controllers' => array(
         'factories' => array(
+            // auction
+            'Ola\Home\Auction\Controller\AdminController' => 'Ola\Home\Auction\Controller\Factory\AdminControllerFactory',
+            'Ola\Home\Auction\Controller\RestController' => 'Ola\Home\Auction\Controller\Factory\RestControllerFactory',
             // banner
             'Ola\Home\Banner\Controller\AdminController' => 'Ola\Home\Banner\Controller\Factory\AdminControllerFactory',
             'Ola\Home\Banner\Controller\RestController' => 'Ola\Home\Banner\Controller\Factory\RestControllerFactory',
@@ -15,6 +18,10 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
+            // auction
+            'Ola\Home\Auction\Service\ServiceInterface' => 'Ola\Home\Auction\Service\Factory\ServiceFactory',
+            'Ola\Home\Auction\Mapper\MapperInterface' => 'Ola\Home\Auction\Mapper\Factory\MapperFactory',
+            'Ola\Home\Auction\Form\Form' => 'Ola\Home\Auction\Form\Factory\FormFactory',
             // banner
             'Ola\Home\Banner\Service\ServiceInterface' => 'Ola\Home\Banner\Service\Factory\ServiceFactory',
             'Ola\Home\Banner\Mapper\MapperInterface' => 'Ola\Home\Banner\Mapper\Factory\MapperFactory',
@@ -23,6 +30,37 @@ return array(
     ),
     'router' => array(
         'routes' => array(
+            'home-auction-admin-index' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/admin/home/auction',
+                    'defaults' => array(
+                        'controller' => 'Ola\Home\Auction\Controller\AdminController',
+                        'action' => 'index'
+                    )
+                )
+            ),
+            'home-auction-admin-create' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/admin/home/auction/create',
+                    'defaults' => array(
+                        'controller' => 'Ola\Home\Auction\Controller\AdminController',
+                        'action' => 'create'
+                    )
+                )
+            ),
+            'home-auction-admin-delete' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/admin/home/auction/[:id]/delete',
+                    'defaults' => array(
+                        'controller' => 'Ola\Home\Auction\Controller\AdminController',
+                        'action' => 'delete'
+                    )
+                )
+            ),
+            
             'home-banner-admin-index' => array(
                 'type' => 'segment',
                 'options' => array(
@@ -136,6 +174,9 @@ return array(
                 'home-banner-admin-update',
                 'home-banner-admin-delete',
                 'home-banner-admin-view',
+                'home-auction-admin-index',
+                'home-auction-admin-create',
+                'home-auction-admin-delete'
                 
             )
         )
