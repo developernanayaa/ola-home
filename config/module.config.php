@@ -144,6 +144,11 @@ return array(
             'Ola\Help' => true
         ),
         'template_map' => array(
+            // auctions
+            'ola/home/auction/admin/index' => __DIR__ . '/../view/auction/admin/index.phtml',
+            'ola/home/auction/admin/create' => __DIR__ . '/../view/auction/admin/create.phtml',
+            'ola/home/auction/admin/delete' => __DIR__ . '/../view/auction/admin/delete.phtml',
+            // banner
             'ola/home/banner/admin/index' => __DIR__ . '/../view/banner/admin/index.phtml',
             'ola/home/banner/admin/create' => __DIR__ . '/../view/banner/admin/create.phtml',
             'ola/home/banner/admin/update' => __DIR__ . '/../view/banner/admin/update.phtml',

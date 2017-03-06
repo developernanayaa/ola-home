@@ -3,6 +3,8 @@ namespace Ola\Home\Auction\Form;
 
 use Zend\Form\Form as ZendForm;
 use Zend\InputFilter\InputFilterProviderInterface;
+use Ola\Home\Auction\Hydrator\Hydrator;
+use Ola\Home\Auction\Entity\Entity;
 
 class Form extends ZendForm implements InputFilterProviderInterface
 {

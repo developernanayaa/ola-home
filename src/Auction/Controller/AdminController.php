@@ -41,7 +41,30 @@ class AdminController extends AbstractAdminController
     {
         parent::indexAction();
         
-        $viewModel = new ViewModel();
+       $page = $this->params()->fromQuery('page', 1);
+        
+        $countPerPage = $this->params()->fromQuery('count', 25);
+        
+        $filter = array(
+            
+        );
+        
+        $paginator = $this->service->getAll($filter);
+        
+        $paginator->setCurrentPageNumber($filter['page']);
+        
+        $paginator->setItemCountPerPage($filter['count-per-page']);
+        
+        $viewModel = new ViewModel(array(
+            'paginator' => $paginator,
+            'page' => $page,
+            'itemCount' => $paginator->getTotalItemCount(),
+            'pageCount' => $paginator->count(),
+            'queryParams' => $this->params()->fromQuery(),
+            'routeParams' => $this->params()->fromRoute()
+        ));
+        
+        $viewModel->setTemplate('ola/home/auction/admin/index');
         
         return $viewModel;
     }
@@ -56,6 +79,8 @@ class AdminController extends AbstractAdminController
         
         $viewModel = new ViewModel();
         
+        $viewModel->setTemplate('ola/home/auction/admin/create');
+        
         return $viewModel;
     }
     
@@ -68,6 +93,8 @@ class AdminController extends AbstractAdminController
         parent::indexAction();
         
         $viewModel = new ViewModel();
+        
+        $viewModel->setTemplate('ola/home/auction/admin/delete');
         
         return $viewModel;
     }

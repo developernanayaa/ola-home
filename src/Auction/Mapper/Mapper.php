@@ -40,7 +40,11 @@ class Mapper extends AbstractMysqlMapper implements MapperInterface
     {
         $this->select = $this->readSql->select('home_page_auction');
         
+        $this->joinAuction();
+        
         $this->filter($filter)->sort($filter);
+        
+        $this->select->order('auction.auction_end_unixtime DESC');
         
         if (array_key_exists('pagination', $filter)) {
             if ($filter['pagination'] == 'off') {
@@ -118,6 +122,36 @@ class Mapper extends AbstractMysqlMapper implements MapperInterface
         return $this->deleteRow();
     }
 
+    protected function joinAuction()
+    {
+        $this->select->join('auction', 'home_page_auction.auction_id = auction.auction_id', array(
+            'auction_start_unixtime',
+            'auction_end_unixtime',
+            'auction_min_bid_value',
+            'auction_current_bid_value',
+            'auction_num_bids',
+            'auction_heading',
+            'auction_subtitle',
+            'auction_featured_flag',
+            'auction_reserve_flag',
+            'auction_item_qty',
+            'auction_item_qty_left',
+            'auction_secure_flag',
+            'auction_auto_relist_flag',
+            'auction_end_early_flag',
+            'auction_status',
+            'auction_type',
+            'auction_location_zip_code',
+            'auction_offsite_flag',
+            'auction_user_hidden_flag',
+            'auction_relist_count',
+            'auction_view_count',
+            'auction_priority'
+        ), 'inner');
+        
+        return $this;
+    }
+    
     /**
      *
      * @param unknown $filter            
