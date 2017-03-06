@@ -68,6 +68,10 @@ class AdminController extends AbstractAdminController
         
         $paginator = $this->service->getAll($filter);
         
+        $paginator->setCurrentPageNumber($filter['page']);
+        
+        $paginator->setItemCountPerPage($filter['count-per-page']);
+        
         $viewModel = new ViewModel(array(
             'paginator' => $paginator,
             'page' => $page,
