@@ -30,9 +30,20 @@ class Hydrator extends ClassMethods
         
         parent::hydrate($data, $object);
         
+        // auction
         $auctionEntity = parent::hydrate($data, new \Ola\Auction\Auction\Entity\Entity());
               
         $object->setAuctionEntity($auctionEntity);
+        
+        // picture
+        $pictureEntity = parent::hydrate($data, new \Ola\Media\Picture\Entity\Entity());
+        
+        $object->getAuctionEntity()->setPictureEntity($pictureEntity);
+        
+        // user
+        $userEntity = parent::hydrate($data, new \Ola\User\User\Entity\Entity());
+        
+        $object->getAuctionEntity()->setUserEntity($userEntity);
         
         return $object;
     }

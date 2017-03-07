@@ -9,6 +9,7 @@ use Zend\Db\Sql\Delete;
 use Ola\Home\Auction\Mapper\MapperInterface;
 use Ola\Mapper\AbstractMysqlMapper;
 use Ola\Home\Auction\Entity\Entity;
+use Zend\Db\Sql\Expression;
 
 class Mapper extends AbstractMysqlMapper implements MapperInterface
 {
@@ -148,6 +149,35 @@ class Mapper extends AbstractMysqlMapper implements MapperInterface
             'auction_view_count',
             'auction_priority'
         ), 'inner');
+        
+        // join image
+        $expression = new Expression('picture.auction_id = auction.auction_id AND picture.picture_delete_flag = 0 AND picture.picture_order = 1');
+        
+        $this->select->join('picture', $expression, array(
+            'picture_id',
+            'picture_url',
+            'picture_order',
+            'picture_mime_type',
+            'picture_file_size',
+            'picture_filename',
+            'picture_delete_flag'
+        ), 'inner');
+        
+        // join user
+        $this->select->join('ola_user', 'auction.user_id = ola_user.user_id', array(
+            'user_username'
+        ), 'left');
+        
+        // join users feedback
+        $this->select->join('user_feedback_cache', 'auction.user_id = user_feedback_cache.user_id', array(
+            'user_feedback_rating'
+        ), 'left');
+        
+        // join service
+        $expresion = new Expression("service.user_id = auction.user_id AND service.service_type_id = 1 AND service.service_status = 'ACTIVE'");
+        $this->select->join('service', $expresion, array(
+            'product_module_id'
+        ), 'left');
         
         return $this;
     }
